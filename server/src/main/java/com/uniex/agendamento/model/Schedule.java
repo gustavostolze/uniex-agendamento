@@ -1,19 +1,22 @@
 package com.uniex.agendamento.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "schedule")
+@Table(name = "schedules")
 public class Schedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
-    private User client;
+    @Column(name = "client_name", nullable = false, length = 100)
+    private String clientName;
+
+    @Column(name = "client_phone", nullable = false, length = 20)
+    private String clientPhone;
 
     @ManyToOne
     @JoinColumn(name = "professional_id", nullable = false)
@@ -36,11 +39,13 @@ public class Schedule {
     @Column(name = "google_event_id", length = 250)
     private String googleEventId;
 
-    public Schedule() {}
+    public Schedule() {
+    }
 
-    public Schedule(Long id, User client, User professional, Service service, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, ScheduleStatus status, String googleEventId) {
+    public Schedule(Long id, String clientName, String clientPhone, User professional, Service service, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, ScheduleStatus status, String googleEventId) {
         this.id = id;
-        this.client = client;
+        this.clientName = clientName;
+        this.clientPhone = clientPhone;
         this.professional = professional;
         this.service = service;
         this.dataHoraInicio = dataHoraInicio;
@@ -57,12 +62,20 @@ public class Schedule {
         this.id = id;
     }
 
-    public User getClient() {
-        return client;
+    public String getClientPhone() {
+        return clientPhone;
     }
 
-    public void setClient(User client) {
-        this.client = client;
+    public void setClientPhone(String clientPhone) {
+        this.clientPhone = clientPhone;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
     public User getProfessional() {
