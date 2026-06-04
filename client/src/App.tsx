@@ -1,12 +1,16 @@
-import { useState } from 'react'
 import './App.css'
+import { getServicesByProfessional } from './services/serviceApi'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  function getServices() {
+    console.log(getServicesByProfessional(1));
+  }
 
   return (
     <>
       <h1>Initial</h1>
+      <button onClick={getServices()}></button>
     </>
   )
 }
