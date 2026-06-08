@@ -2,7 +2,7 @@
 client/node_modules/
 client/dist/
 client/.env
-client/.env.local
+client/.env*.local
 client/.env.development.local
 client/.env.test.local
 client/.env.production.local
@@ -20,7 +20,8 @@ server/pom.xml.nextReleaseBackup
 server/release.properties
 server/dependency-reduced-pom.xml
 server/build/
-
+server/*.db
+server/.mv.db
 server/.mvn/wrapper/maven-wrapper.jar
 
 # --- IDEs e Sistema ---
