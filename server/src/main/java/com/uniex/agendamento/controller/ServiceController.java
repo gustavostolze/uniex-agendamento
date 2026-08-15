@@ -28,21 +28,26 @@ public class ServiceController {
     }
 
     @PostMapping
-    public ResponseEntity<Service> createService(@RequestBody Service service) {
-        Service savedService = serviceService.saveService(service);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedService);
+    public ResponseEntity<Service> createService(@RequestBody ServiceRequestDTO request) {
+        Service novoServico = serviceService.saveService(
+                request.getProfessionalId(),
+                request.getName(),
+                request.getDescription(),
+                request.getPrice(),
+                request.getTimeMinutes()
+        );
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoServico);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Service> updateService(@PathVariable Long id, @RequestBody Service serviceDetails) {
-        Service existingService = serviceService.getServiceById(id);
-
-        existingService.setName(serviceDetails.getName());
-        existingService.setDescription(serviceDetails.getDescription());
-        existingService.setPrice(serviceDetails.getPrice());
-        existingService.setTimeMinutes(serviceDetails.getTimeMinutes());
-
-        Service updatedService = serviceService.saveService(existingService);
+    public ResponseEntity<Service> updateService(@PathVariable Long id, @RequestBody ServiceRequestDTO request) {
+        Service updatedService = serviceService.updateService(
+                id,
+                request.getName(),
+                request.getDescription(),
+                request.getPrice(),
+                request.getTimeMinutes()
+        );
         return ResponseEntity.ok(updatedService);
     }
 

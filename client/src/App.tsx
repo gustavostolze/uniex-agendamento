@@ -1,18 +1,21 @@
-import './App.css'
-import { getServicesByProfessional } from './services/serviceApi'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ClientBooking from './pages/ClientBooking';
+import Dashboard from './pages/Dashboard';
+import './App.css';
+import Login from './pages/Login';
 
 function App() {
-
-  function getServices() {
-    console.log(getServicesByProfessional(1));
-  }
-
   return (
-    <>
-      <h1>Initial</h1>
-      <button onClick={getServices()}></button>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ClientBooking />} />
+
+        <Route path="/login" element={<Login />} />
+        
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

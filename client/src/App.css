@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* Configuração de Cores Customizadas no Tailwind v4 */
+@theme {
+  --color-brand-bgDark: #1E2530;
+  --color-brand-cardDark: #2D3748;
+  --color-brand-blueAction: #0070F3;
+  --color-brand-bgLight: #F3F4F6;
+}
